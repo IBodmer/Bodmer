@@ -5,6 +5,7 @@ import lombok.*;
 import javax.persistence.*;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Null;
 import java.time.LocalDateTime;
 
 @Entity
@@ -12,20 +13,26 @@ import java.time.LocalDateTime;
 @AllArgsConstructor
 @NoArgsConstructor
 public class User {
+    public interface New {
+    }
+
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @NotNull
     @Column(name = "id")
     private Long id;
+    @NotNull
     @Column(name = "user_name")
     private String userName;
     @Column(name = "name")
     private String name;
     @Column(name = "last_name")
     private String lastName;
-    @Column(name = "email")
     @Email
+    @NotNull
+    @Column(name = "email")
     private String email;
+    @NotNull
     @Column(name = "password")
     private String password;
     @Enumerated(value = EnumType.STRING)

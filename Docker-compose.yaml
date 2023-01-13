@@ -8,3 +8,10 @@ services:
       POSTGRES_PASSWORD: "1234"
     ports:
       - "5432:5432"
+  app:
+    build: ./
+    container_name: 'bodmer-app'
+    ports:
+      - 8080:8080
+    links:
+      - 'postgres : localhost'
