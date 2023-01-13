@@ -3,6 +3,7 @@ package com.task.bodmer.model;
 import lombok.*;
 
 import javax.persistence.*;
+import javax.validation.constraints.Email;
 import javax.validation.constraints.NotNull;
 import java.time.LocalDateTime;
 
@@ -14,15 +15,16 @@ public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @NotNull
-    @Column(name="id")
+    @Column(name = "id")
     private Long id;
-    @Column(name="user_name")
+    @Column(name = "user_name")
     private String userName;
     @Column(name = "name")
     private String name;
     @Column(name = "last_name")
     private String lastName;
     @Column(name = "email")
+    @Email
     private String email;
     @Column(name = "password")
     private String password;
