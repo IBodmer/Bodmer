@@ -1,16 +1,17 @@
 package com.task.bodmer.security;
 
+import com.task.bodmer.model.Person;
 import org.springframework.security.core.GrantedAuthority;
-import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
 
 import java.util.Collection;
 
-public class UserDet implements UserDetails {
-    private final User user;
+public class PersonDetails implements UserDetails {
 
-    public UserDet(User user) {
-        this.user = user;
+    private final Person person;
+
+    public PersonDetails(Person person) {
+        this.person = person;
     }
 
 
@@ -21,12 +22,12 @@ public class UserDet implements UserDetails {
 
     @Override
     public String getPassword() {
-        return this.user.getPassword();
+        return this.person.getPassword();
     }
 
     @Override
     public String getUsername() {
-        return this.user.getUsername();
+        return this.person.getUserName();
     }
 
     @Override
@@ -47,5 +48,10 @@ public class UserDet implements UserDetails {
     @Override
     public boolean isEnabled() {
         return true;
+    }
+
+    //Чтобы получать данные у аутентифицированного пользователя
+    public Person getPerson(){
+        return this.person;
     }
 }

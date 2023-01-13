@@ -1,4 +1,4 @@
-CREATE TABLE "user"
+CREATE TABLE person
 (
     "id"              int8 PRIMARY KEY not null ,
     "user_name"       varchar(50)not null,
