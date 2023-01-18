@@ -1,22 +1,30 @@
 package com.task.bodmer.config;
 
-import com.task.bodmer.security.AuthProviderImpl;
+import com.task.bodmer.service.UserDetService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Bean;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
+import org.springframework.security.crypto.password.NoOpPasswordEncoder;
+import org.springframework.security.crypto.password.PasswordEncoder;
 
 @EnableWebSecurity
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
-    private final AuthProviderImpl authProvider;
+    private final UserDetService userDetService;
 
     @Autowired
-    public SecurityConfig(AuthProviderImpl authProvider) {
-        this.authProvider = authProvider;
+    public SecurityConfig(UserDetService userDetService) {
+        this.userDetService = userDetService;
     }
 
     @Override
     protected void configure(AuthenticationManagerBuilder auth) throws Exception {
-        auth.authenticationProvider(authProvider);
+        auth.userDetailsService(userDetService);
+    }
+
+    @Bean
+    public PasswordEncoder getPasswordEncoder() {
+        return NoOpPasswordEncoder.getInstance();
     }
 }
