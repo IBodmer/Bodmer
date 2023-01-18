@@ -1,12 +1,7 @@
 *.iml
 *.ipr
-
 .idea/*
-
 *.iws
-
-# IntelliJ
 out/
-
-
 /target/
+!Dockerfile
