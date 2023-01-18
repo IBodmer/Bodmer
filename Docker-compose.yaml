@@ -12,6 +12,4 @@ services:
     build: ./
     container_name: 'bodmer-app'
     ports:
-      - 8080:8080
-    links:
-      - 'postgres : localhost'
+      - "8080:8080"

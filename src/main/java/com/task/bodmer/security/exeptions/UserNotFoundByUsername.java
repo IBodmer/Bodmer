@@ -1,4 +1,4 @@
-package com.task.bodmer.exeptions;
+package com.task.bodmer.security.exeptions;
 
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 

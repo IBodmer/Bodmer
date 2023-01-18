@@ -15,10 +15,11 @@ import java.time.LocalDateTime;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-public class Person {
+public class Users {
     public interface New {
     }
-
+    public interface Exist {
+    }
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -27,8 +28,8 @@ public class Person {
     @NotNull
     @Column(name = "user_name")
     private String userName;
-    @Column(name = "name")
-    private String name;
+    @Column(name = "first_name")
+    private String firstName;
     @Column(name = "last_name")
     private String lastName;
     @Email
@@ -40,10 +41,7 @@ public class Person {
     private String password;
     @Enumerated(value = EnumType.STRING)
     @Column(name = "role")
-    private Role role;
-    @Enumerated(value = EnumType.STRING)
-    @Column(name = "role_in_project")
-    private RoleProject roleProject;
+    private ApplicationRole applicationRole;
     @Column(name = "registered_at")
     private LocalDateTime created;
 //TODO дописать поле с коллекцией проектов и задач, а так же добавить все в миграцию, поменять название ролей в проекте
