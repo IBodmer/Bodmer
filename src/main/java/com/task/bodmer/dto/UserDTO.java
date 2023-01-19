@@ -28,7 +28,7 @@ public class UserDTO {
     private String lastName;
 
     @NotNull
-    @Email(groups = {Users.New.class})
+    @Email
     private String email;
 
     @NotNull
