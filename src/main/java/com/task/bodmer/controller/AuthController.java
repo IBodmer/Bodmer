@@ -16,8 +16,5 @@ public class AuthController {
 //    public String login(){
 //        return "login";
 //    }
-@Bean
-public PasswordEncoder getPasswordEncoder() {
-    return new BCryptPasswordEncoder();
-}
+
 }

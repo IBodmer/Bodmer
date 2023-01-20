@@ -1,20 +1,20 @@
 package com.task.bodmer.config;
 
-import com.task.bodmer.security.AuthProviderImpl;
 import com.task.bodmer.service.UserServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Bean;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.crypto.password.PasswordEncoder;
 
 @EnableWebSecurity
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
-    private final AuthProviderImpl authProvider; // удалить
     private final UserServiceImpl userService;
 
     @Autowired
-    public SecurityConfig(AuthProviderImpl authProvider, UserServiceImpl userService) {
-        this.authProvider = authProvider;
+    public SecurityConfig(UserServiceImpl userService) {
         this.userService = userService;
     }
 
@@ -38,10 +38,13 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Override
     protected void configure(AuthenticationManagerBuilder auth) throws Exception {
-        auth.authenticationProvider(authProvider);
+        auth.userDetailsService(userService).passwordEncoder(getPasswordEncoder());
     }
 
-
+    @Bean
+    public PasswordEncoder getPasswordEncoder() {
+        return new BCryptPasswordEncoder();
+    }
 
 
 }

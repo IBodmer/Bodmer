@@ -9,6 +9,8 @@ import com.task.bodmer.security.exeptions.UserNotFound;
 import com.task.bodmer.utils.PatternUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.core.userdetails.UserDetailsService;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.validation.annotation.Validated;
@@ -17,7 +19,7 @@ import java.util.regex.Matcher;
 
 @Service
 @Validated
-public class UserServiceImpl implements UserService {
+public class UserServiceImpl implements UserService, UserDetailsService {
     private final UserRepo userRepo;
 
     @Autowired
@@ -31,13 +33,6 @@ public class UserServiceImpl implements UserService {
         return UserMapper.INSTANCE.toDTO(userRepo.save(UserMapper.INSTANCE.toUser(userDTO)));
     }
 
-    public UserDetails loadUser(String constr) {
-        if (validate(constr)) {
-            return loadByEmail(constr);
-        } else {
-            return loadByUsername(constr);
-        }
-    }
 
     @Override
     public UserDetails loadByEmail(String emailOrName) {
@@ -54,5 +49,14 @@ public class UserServiceImpl implements UserService {
     public boolean validate(String emailOrName) {
         Matcher matcher = PatternUtils.VALID_EMAIL.matcher(emailOrName);
         return matcher.find();
+    }
+
+    @Override
+    public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
+        if (validate(username)) {
+            return loadByEmail(username);
+        } else {
+            return loadByUsername(username);
+        }
     }
 }
