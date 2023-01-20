@@ -6,6 +6,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.validation.constraints.Email;
+import javax.validation.constraints.NotNull;
 
 @NoArgsConstructor
 @Data
@@ -17,4 +18,6 @@ public class Login {
     private String username;
     @Email
     private String email;
+    @NotNull
+    private String password;
 }

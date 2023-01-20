@@ -51,7 +51,7 @@ public class UserDet implements UserDetails {
     }
 
     //Чтобы получать данные у аутентифицированного пользователя
-    public Users getPerson(){
+    public Users getPerson() {
         return this.users;
     }
 }

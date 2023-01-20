@@ -1,5 +1,6 @@
 package com.task.bodmer.dto;
 
+import com.task.bodmer.Validation.Username;
 import com.task.bodmer.model.ApplicationRole;
 import com.task.bodmer.model.Users;
 import lombok.AllArgsConstructor;
@@ -15,10 +16,11 @@ import java.time.LocalDateTime;
 @Data
 @AllArgsConstructor
 public class UserDTO {
-    @Null(groups = {Users.New.class})
+    @Null(groups = {Users.New.class,Users.Exist.class})
     private Long id;
 
     @NotNull
+    @Username
     private String userName;
 
     @Null(groups = {Users.New.class})

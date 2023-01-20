@@ -22,4 +22,6 @@ public class LoginDTO {
     @NotNull(groups = {Login.LoginByEmail.class})
     @Email
     private String email;
+    @NotNull
+    private String password;
 }
