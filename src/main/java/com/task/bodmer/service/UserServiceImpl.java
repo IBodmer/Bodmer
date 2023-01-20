@@ -52,7 +52,7 @@ public class UserServiceImpl implements UserService, UserDetailsService {
     }
 
     @Override
-    public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
+    public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException { //пришлось хитрить, чтобы секьюрити понимал че делать. имя дерьмо, но работает
         if (validate(username)) {
             return loadByEmail(username);
         } else {
