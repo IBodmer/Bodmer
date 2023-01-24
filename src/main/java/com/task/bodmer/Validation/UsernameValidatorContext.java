@@ -1,9 +1,9 @@
 package com.task.bodmer.Validation;
 
 import com.task.bodmer.utils.PatternUtils;
+import jakarta.validation.ConstraintValidator;
+import jakarta.validation.ConstraintValidatorContext;
 
-import javax.validation.ConstraintValidator;
-import javax.validation.ConstraintValidatorContext;
 import java.util.regex.Matcher;
 
 public class UsernameValidatorContext implements ConstraintValidator<Username, String> {

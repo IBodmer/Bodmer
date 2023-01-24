@@ -1,5 +1,5 @@
 package com.task.bodmer.model;
 
 public enum ApplicationRole {
-    GUEST,USER,ADMIN
+    GUEST, USER, ADMIN
 }

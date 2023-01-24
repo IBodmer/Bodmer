@@ -2,22 +2,24 @@ package com.task.bodmer.security;
 
 import com.task.bodmer.model.Users;
 import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
 import java.util.Collection;
+import java.util.Collections;
 
-public class UserDet implements UserDetails {
+public class UserDetails_ implements UserDetails {
 
     private final Users users;
 
-    public UserDet(Users users) {
+    public UserDetails_(Users users) {
         this.users = users;
     }
 
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
-        return null;
+        return Collections.singletonList(new SimpleGrantedAuthority(users.getApplicationRole().name()));
     }
 
     @Override

@@ -3,25 +3,25 @@ package com.task.bodmer.dto;
 import com.task.bodmer.Validation.Username;
 import com.task.bodmer.model.ApplicationRole;
 import com.task.bodmer.model.Users;
+import jakarta.validation.constraints.Email;
+import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.Null;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import javax.validation.constraints.Email;
-import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Null;
 import java.time.LocalDateTime;
 
 @NoArgsConstructor
 @Data
 @AllArgsConstructor
 public class UserDTO {
-    @Null(groups = {Users.New.class,Users.Exist.class})
+    @Null(groups = {Users.New.class, Users.Exist.class})
     private Long id;
 
     @NotNull
     @Username
-    private String userName;
+    private String username;
 
     @Null(groups = {Users.New.class})
     private String name;
