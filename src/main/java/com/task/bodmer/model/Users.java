@@ -3,10 +3,7 @@ package com.task.bodmer.model;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotNull;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 
 import java.time.LocalDateTime;
 
@@ -15,6 +12,7 @@ import java.time.LocalDateTime;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
+@Builder
 public class Users {
     public interface New {
     }
@@ -28,23 +26,23 @@ public class Users {
     private Long id;
     @NotNull
     @Column(name = "user_name")
-    private String userName;
+    private String username;
     @Column(name = "first_name")
     private String firstName;
     @Column(name = "last_name")
     private String lastName;
+    @Column(name = "email")
     @Email
     @NotNull
-    @Column(name = "email")
     private String email;
-    @NotNull
     @Column(name = "password")
+    @NotNull
     private String password;
     @Enumerated(value = EnumType.STRING)
     @Column(name = "role")
-    private ApplicationRole applicationRole;
+    private ApplicationRole application_role;
     @Column(name = "registered_at")
-    private LocalDateTime created;
+    private LocalDateTime registered_at;
 //TODO дописать поле с коллекцией проектов и задач, а так же добавить все в миграцию, поменять название ролей в проекте
 
 }

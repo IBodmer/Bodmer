@@ -1,6 +1,5 @@
 package com.task.bodmer.dto;
 
-import com.task.bodmer.Validation.Username;
 import com.task.bodmer.model.ApplicationRole;
 import com.task.bodmer.model.Users;
 import jakarta.validation.constraints.Email;
@@ -16,11 +15,10 @@ import java.time.LocalDateTime;
 @Data
 @AllArgsConstructor
 public class UserDTO {
-    @Null(groups = {Users.New.class, Users.Exist.class})
+    @Null
     private Long id;
 
     @NotNull
-    @Username
     private String username;
 
     @Null(groups = {Users.New.class})

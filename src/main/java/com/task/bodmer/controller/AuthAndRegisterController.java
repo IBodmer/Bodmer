@@ -18,10 +18,10 @@ import org.springframework.web.bind.annotation.RestController;
 @Validated
 @RestController
 @RequestMapping(value = "api/v1/auth")
-public class RegistrationController {
+public class AuthAndRegisterController {
     private final AuthService authService;
 
-    public RegistrationController(AuthService authService) {
+    public AuthAndRegisterController(AuthService authService) {
         this.authService = authService;
     }
 

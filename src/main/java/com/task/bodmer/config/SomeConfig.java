@@ -7,27 +7,22 @@ import org.springframework.security.authentication.AuthenticationProvider;
 import org.springframework.security.authentication.dao.DaoAuthenticationProvider;
 import org.springframework.security.config.annotation.authentication.configuration.AuthenticationConfiguration;
 import org.springframework.security.core.userdetails.UserDetailsService;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
-import org.springframework.security.crypto.password.PasswordEncoder;
 @Configuration
 public class SomeConfig {
     private final UserDetailsService userService;
+    private final PasswordEncoder encoder;
 
-    public SomeConfig(UserDetailsService userService) {
+    public SomeConfig(UserDetailsService userService, PasswordEncoder encoder) {
         this.userService = userService;
+        this.encoder = encoder;
     }
 
     @Bean
     public AuthenticationProvider authenticationProvider() {
         DaoAuthenticationProvider authProvider = new DaoAuthenticationProvider();
         authProvider.setUserDetailsService(userService);
-        authProvider.setPasswordEncoder(passwordEncoder()); //todo че сделать ???????? почему зациклилось
+        authProvider.setPasswordEncoder(encoder.bCryptPasswordEncoder()); //todo че сделать ???????? почему зациклилось
         return authProvider;
-    }
-
-    @Bean
-    public PasswordEncoder passwordEncoder() {
-        return new BCryptPasswordEncoder();
     }
 
     @Bean
